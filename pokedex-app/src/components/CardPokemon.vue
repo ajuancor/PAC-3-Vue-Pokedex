@@ -15,7 +15,7 @@ defineProps({
 
 <template>
 
-  <div v-if="list" class="content-searcher">
+  <div v-if="list && pokemons.length !== 0" class="content-searcher">
     <div class="restart-starters">
         <button v-on:click="restartPokemon()" id="btn-restart-starters" class="btn btn-retrostyle btn-restart-starter">Reiniciar inicials <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></button>
     </div>
@@ -26,7 +26,7 @@ defineProps({
     </div>
   </div>
 
-  <div v-if="list" class="list-card-pokemon">
+  <div v-if="list && pokemons.length !== 0" class="list-card-pokemon">
     <!-- LIST CARD -->
     <article class="card" v-for="(pokemon) in pokemons" v-bind:key="pokemon.id">
       <h2 class="title card-title text-center">{{ pokemon.name }}</h2>
@@ -68,7 +68,7 @@ defineProps({
     <!-- /LIST CARD -->
   </div>
 
-  <div v-else class="detail-card-pokemon">
+  <div v-else-if="!list && pokemons.length !== 0" class="detail-card-pokemon">
     <!-- DETAIL CARD -->
     <article class="card" v-for="(pokemon) in pokemons" v-bind:key="pokemon.id">
         <h2 class="title card-title text-center">{{ pokemon.name }}</h2>
@@ -167,6 +167,12 @@ defineProps({
     </article>
     <!-- /DETAIL CARD -->
   </div>
+  
+  <div v-else class="error-list">
+      <!-- EMPTY LIST -->
+      <p class="error-message">{{ error_message }}</p>
+      <!-- /EMPTY LIST -->
+  </div>
 
 </template>
 
@@ -178,7 +184,8 @@ defineProps({
   data() {
     return {
       pokemons: [],
-      first_pokemons: []
+      first_pokemons: [],
+      error_message: ""
     }
   },
   /*
@@ -258,14 +265,22 @@ defineProps({
       });
     },
     // Obté més dades d'un Pokémon
-    getPokemonDetail(id) {
-      Promise.all( [ getPokemons.getPokemon(id), getPokemons.getInfoSpeciesPokemon(id) ] ).then((values) => {
+    async getPokemonDetail(id) {
+      let error = false;
+      let results = await Promise.all( [ getPokemons.getPokemon(id), getPokemons.getInfoSpeciesPokemon(id) ] )
+      .then((values) => {
         //console.log(values);
         this.pokemons.push(values[0].data);
         //this.pokemons[0].species = values[1].data;
 
         this.pokemons[0].text_description = this.setPokemonDescription(values[1].data.flavor_text_entries);
+      })
+      .catch(function(err) {
+        //console.log(err.message); // some coding error in handling happened
+        error = true;
       });
+
+      if (error) { this.setErrorMessage(); }
     },
     getPokemonTypeIcon(name_type) {
       //let img_type = stringToHtml( selectPokemonType(type) );
@@ -300,6 +315,10 @@ defineProps({
       } else {
         this.pokemons = this.first_pokemons;
       }
+    },
+    setErrorMessage() {
+      console.log("Show missatge error");
+      this.error_message = "No s'han trobat resultats";
     }
   },
   mounted() {
@@ -309,6 +328,7 @@ defineProps({
       this.first_pokemons = this.pokemons;
     } else {
       this.getPokemonDetail(this.pokemon_id);
+      
       //this.getPokemonIndividual(this.pokemon_id);
     }
   }
