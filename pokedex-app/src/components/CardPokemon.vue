@@ -6,10 +6,6 @@ defineProps({
     type: Boolean,
     required: true
   },
-  searcher: {
-    type: Boolean,
-    required: false
-  },
   pokemon_id: {
     type: String,
     required: false
@@ -19,7 +15,7 @@ defineProps({
 
 <template>
 
-  <div v-if="list && pokemons.length !== 0 && searcher" class="content-searcher">
+  <div v-if="list" class="content-searcher">
     <div class="restart-starters">
         <button v-on:click="restartPokemon()" id="btn-restart-starters" class="btn btn-retrostyle btn-restart-starter">Reiniciar inicials <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></button>
     </div>
@@ -317,12 +313,17 @@ defineProps({
         }
 
         this.pokemons = result;
+
+        if (result.length == 0) {
+          this.setErrorMessage();
+        }
+
       } else {
         this.pokemons = this.first_pokemons;
       }
     },
     setErrorMessage() {
-      console.log("Show missatge error");
+      //console.log("Show missatge error");
       this.error_message = "No s'han trobat resultats";
     }
   },
