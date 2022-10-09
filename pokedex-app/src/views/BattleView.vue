@@ -1,9 +1,9 @@
 <script setup>
-import CardPokemon from '../components/CardPokemon.vue';
+import BattlePokemon from '../components/BattlePokemon.vue';
 </script>
 
 <template>
   <main>
-    <CardPokemon v-bind:list="true" />
+    <BattlePokemon />
   </main>
 </template>

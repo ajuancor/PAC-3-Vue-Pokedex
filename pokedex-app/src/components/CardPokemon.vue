@@ -6,6 +6,10 @@ defineProps({
     type: Boolean,
     required: true
   },
+  searcher: {
+    type: Boolean,
+    required: false
+  },
   pokemon_id: {
     type: String,
     required: false
@@ -15,7 +19,7 @@ defineProps({
 
 <template>
 
-  <div v-if="list && pokemons.length !== 0" class="content-searcher">
+  <div v-if="list && pokemons.length !== 0 && searcher" class="content-searcher">
     <div class="restart-starters">
         <button v-on:click="restartPokemon()" id="btn-restart-starters" class="btn btn-retrostyle btn-restart-starter">Reiniciar inicials <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></button>
     </div>
@@ -185,6 +189,7 @@ defineProps({
     return {
       pokemons: [],
       first_pokemons: [],
+      searcher: true,
       error_message: ""
     }
   },
