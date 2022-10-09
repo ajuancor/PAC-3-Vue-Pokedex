@@ -60,7 +60,7 @@ defineProps({
       <h1>{{ result_battle }}</h1>
     </div>
 
-    <button class="btn btn-retrostyle btn-repeat-battle mt30" onclick="location.reload();">Tornar a fer un combat <img class="iconbtn" src="/assets/css/img/iconbtn.jpg"></button>  
+    <button class="btn btn-retrostyle btn-repeat-battle mt30" onclick="location.reload();">Tornar a fer un combat <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></button>  
     <!-- /BOX RESULT -->
   </div>
   
