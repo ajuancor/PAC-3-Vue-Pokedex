@@ -15,7 +15,7 @@ defineProps({
       <nav>
         <!-- <RouterLink to="/">Home</RouterLink> -->
         <RouterLink to="/llista">Llista</RouterLink>
-        <RouterLink to="/comabat">Combat</RouterLink>
+        <RouterLink to="/combat">Combat</RouterLink>
       </nav>
     </div>
     
