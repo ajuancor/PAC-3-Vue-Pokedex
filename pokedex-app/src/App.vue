@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import MenuPokemon from './components/MenuPokemon.vue';
 </script>
 
@@ -14,6 +13,14 @@ import MenuPokemon from './components/MenuPokemon.vue';
   </header>
 
   <RouterView />
+
+  <footer class="main-footer">
+      <section class="container">
+          <div class="text-center">
+              <span class="copyright">Copyright 2022 - Albert Juan i David Mañas</span>
+          </div>
+      </section>
+  </footer>
 </template>
 
 <style scoped>
