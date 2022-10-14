@@ -281,7 +281,7 @@ defineProps({
         error = true;
       });
 
-      if (error) { this.setErrorMessage(); }
+      if (error) { this.setErrorMessage(); addFooterBottom(true); }
     },
     getPokemonTypeIcon(name_type) {
       //let img_type = stringToHtml( selectPokemonType(type) );
