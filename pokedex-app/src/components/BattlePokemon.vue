@@ -1,17 +1,5 @@
 <script setup>
 import getPokemons from '@/services/getPokemons';
-/*
-defineProps({
-  list: {
-    type: Boolean,
-    required: true
-  },
-  pokemon_id: {
-    type: String,
-    required: false
-  }
-})
-*/
 </script>
 
 <template>
@@ -76,7 +64,6 @@ defineProps({
   export default {
   name: "app",
   el: ".card",
-  //props: ['list', 'pokemon_id'],
   data() {
     return {
       pokemons: [],
@@ -139,9 +126,6 @@ defineProps({
       } else if ( this.second_pokemon.length == 0 ) {
         this.second_pokemon.push(card_pokemon);
         this.startBattle();
-      } else {
-        //this.start_battle = true;
-        //this.startBattle();
       }
     },
     showCard(event) {
@@ -186,7 +170,6 @@ defineProps({
     this.getPokemonList(pokemons_selected);
   }
 }
-//}
 </script>
 
 <style scoped>
