@@ -858,9 +858,14 @@ header {
 }
 
 /* Error list */
-.error-list{
+.error-list {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 7rem;
+}
+
+main .error-list .error-message > footer {
+    position: absolute;
+    bottom: 0;
 }
