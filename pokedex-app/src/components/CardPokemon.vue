@@ -186,6 +186,7 @@ defineProps({
       pokemons: [],
       first_pokemons: [],
       searcher: true,
+      error: false,
       error_message: ""
     }
   },
@@ -267,7 +268,7 @@ defineProps({
     },
     // Obté més dades d'un Pokémon
     async getPokemonDetail(id) {
-      let error = false;
+      let error_promise = false;
       let results = await Promise.all( [ getPokemons.getPokemon(id), getPokemons.getInfoSpeciesPokemon(id) ] )
       .then((values) => {
         //console.log(values);
@@ -278,10 +279,20 @@ defineProps({
       })
       .catch(function(err) {
         //console.log(err.message); // some coding error in handling happened
-        error = true;
+        error_promise = true;
       });
 
-      if (error) { this.setErrorMessage(); addFooterBottom(true); }
+      if (error_promise) {
+        this.error = true;
+        
+        // Envia un emit al pare per indica que hi hagut un error
+        this.$emit('report-error');
+
+        this.setErrorMessage(); 
+        //addFooterBottom(true);
+      } else {
+        //addFooterBottom(false);
+      }
     },
     getPokemonTypeIcon(name_type) {
       //let img_type = stringToHtml( selectPokemonType(type) );
@@ -334,7 +345,6 @@ defineProps({
       this.first_pokemons = this.pokemons;
     } else {
       this.getPokemonDetail(this.pokemon_id);
-      
       //this.getPokemonIndividual(this.pokemon_id);
     }
   }

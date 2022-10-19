@@ -5,7 +5,10 @@ import router from './router'
 import './assets/main.css'
 import './assets/styles.css'
 
-const app = createApp(App)
+let app = createApp(App)
+
+// Variable global
+//app.config.globalProperties.$error_app = false
 
 app.use(router)
 
