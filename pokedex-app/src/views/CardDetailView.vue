@@ -1,9 +1,5 @@
 <script setup>
-//import { ref, defineEmit } from 'vue'
 import CardPokemon from '../components/CardPokemon.vue';
-
-//const emit = defineEmit(['report-error']);
-//emit("report-error", store.count);
 </script>
 
 <template>
