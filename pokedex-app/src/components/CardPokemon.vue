@@ -181,6 +181,7 @@ defineProps({
   name: "app",
   el: ".card",
   props: ['list', 'pokemon_id'],
+  emits: ['report-error'],
   data() {
     return {
       pokemons: [],

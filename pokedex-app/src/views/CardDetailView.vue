@@ -1,5 +1,9 @@
 <script setup>
+//import { ref, defineEmit } from 'vue'
 import CardPokemon from '../components/CardPokemon.vue';
+
+//const emit = defineEmit(['report-error']);
+//emit("report-error", store.count);
 </script>
 
 <template>
@@ -10,19 +14,19 @@ import CardPokemon from '../components/CardPokemon.vue';
 
 <script>
 export default {
-  name: 'main-detail',
+  name: 'detail-main',
   el: '.main-detail',
-  components: CardPokemon,
+  components: { CardPokemon },
   data() {
     return {
       error_detail : false
-    };
+    }
   },
   methods: {
     showError() {
       this.error_detail = true;
     }
   },
-  mounted() {}
+  //mounted() {}
 }
 </script>
