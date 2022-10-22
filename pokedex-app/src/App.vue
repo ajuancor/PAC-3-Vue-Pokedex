@@ -23,20 +23,6 @@ import MenuPokemon from './components/MenuPokemon.vue';
   </footer>
 </template>
 
-<script>
-export default {
-  name: 'main-app',
-  data() {
-    return {
-      error: false
-    }
-  },
-  methods: {},
-  mounted() {}
-}
-</script>
-
-
 <style scoped>
 header {
   line-height: 1.5;

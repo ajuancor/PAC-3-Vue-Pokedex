@@ -1,45 +1,41 @@
 <script setup>
 import getPokemons from '@/services/getPokemons';
+import { ref, onMounted } from '@vue/runtime-core';
 
 defineProps({
-  list: {
-    type: Boolean,
+  pokemons: {
+    type: Array,
     required: true
   },
-  pokemon_id: {
+  error_message: {
     type: String,
     required: false
   }
-})
+});
 </script>
 
 <template>
 
-  <div v-if="list" class="content-searcher">
-    <div class="restart-starters">
-        <button v-on:click="restartPokemon()" id="btn-restart-starters" class="btn btn-retrostyle btn-restart-starter">Reiniciar inicials <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></button>
-    </div>
-
-    <div class="searcher">
-        <input @input="searchPokemon($event)" type="text" value="" name="pokemonID" id="search-pokemon" placeholder="Introdueix un Pokémon..." class="input_search" />
-        <!-- <button id="btn-search-pokemon" class="fa fa-search btn button_search no_link btn-retrostyle">Buscar <img class="iconbtn" src="/assets/css/img/iconbtn.jpg"></button> -->
-    </div>
-  </div>
-
-  <div v-if="list && pokemons.length !== 0" class="list-card-pokemon">
+  <div v-if="pokemons.length !== 0" class="list-card-pokemon">
     <!-- LIST CARD -->
-    <article class="card" v-for="(pokemon) in pokemons" v-bind:key="pokemon.id">
+    <article class="card" v-for="(pokemon) in pokemons" :key="pokemon.id">
       <h2 class="title card-title text-center">{{ pokemon.name }}</h2>
       <!-- Img -->
       <div class="content-img-card">
           <!-- Front img -->
-          <div class="front pointer" onclick="changeCardImg(this); return false;">
-              <img :src="pokemon.sprites.front_default" class="img-card-pokemon" />
+          <div v-if="pokemon.front_img" class="front pointer" @click="pokemon.front_img = false">
+              <img v-if="pokemon.sprites.front_default !== undefined && pokemon.sprites.front_default !== null && pokemon.sprites.front_default !== ''"
+              :src="pokemon.sprites.front_default" class="img-card-pokemon" />
+              <img v-else
+              src="../assets/img/default-pokemon.png" class="img-card-pokemon" />
           </div>
-          
+
           <!-- Back img -->
-          <div class="back pointer" onclick="changeCardImg(this); return false;" style="display: none;">
-              <img :src="pokemon.sprites.back_default" class="img-card-pokemon" />
+          <div v-else class="back pointer" @click="pokemon.front_img = true">
+              <img v-if="pokemon.sprites.back_default !== undefined && pokemon.sprites.back_default !== null && pokemon.sprites.back_default !== ''"
+              :src="pokemon.sprites.back_default" class="img-card-pokemon" />
+              <img v-else
+              src="../assets/img/default-pokemon.png" class="img-card-pokemon" />
           </div>
       </div>
       
@@ -67,106 +63,6 @@ defineProps({
     </article>
     <!-- /LIST CARD -->
   </div>
-
-  <div v-else-if="!list && pokemons.length !== 0" class="detail-card-pokemon">
-    <!-- DETAIL CARD -->
-    <article class="card" v-for="(pokemon) in pokemons" v-bind:key="pokemon.id">
-        <h2 class="title card-title text-center">{{ pokemon.name }}</h2>
-        
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!-- Content Imgs -->
-                <div class="imgs-pokemon">
-                
-                    <!-- Img Default pokemon -->
-                    <div class="default-pokemon">
-                        <div class="content-img-card">
-                            <!-- Front img -->
-                            <div class="front">
-                                <img :src="pokemon.sprites.front_default" class="img-card-pokemon" />
-                            </div>
-                        </div>
-                        
-                        <div class="content-img-card">
-                            <!-- Back img -->
-                            <div class="back">
-                                <img :src="pokemon.sprites.back_default" class="img-card-pokemon" />
-                            </div>
-                        </div>
-                    </div>
-        
-                    <!-- Img Shiny pokemon -->
-                    <div class="shiny-pokemon">
-                        <div class="content-img-card">
-                            <!-- Front img -->
-                            <div class="front">
-                                <img :src="pokemon.sprites.front_shiny" class="img-card-pokemon" />
-                            </div>
-                        </div>
-                        
-                        <div class="content-img-card">
-                            <!-- Back img -->
-                            <div class="back">
-                                <img :src="pokemon.sprites.back_shiny" class="img-card-pokemon" />
-                            </div>
-                        </div>    
-                    </div>
-        
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6">
-                <!-- Content text -->
-                <div class="content-text-card mt10">
-                    <div class="description-pokemon"><p>{{ pokemon.text_description }}</p></div>
-
-                    <ul class="types-pokemon">
-                        <li><span class="align-self-center">Tipus</span></li>
-                        <li>
-                          <span class="content-types-pokemon">
-                            <img class="img-type-pokemon" :src=getPokemonTypeIcon(pokemon.types[0].type.name) :alt=getPokemonTypeTitle(pokemon.types[0].type.name) :title=getPokemonTypeTitle(pokemon.types[0].type.name) />
-                            <img v-if="pokemon.types.hasOwnProperty(1)" class="img-type-pokemon" :src=getPokemonTypeIcon(pokemon.types[1].type.name) :alt=getPokemonTypeTitle(pokemon.types[1].type.name) :title=getPokemonTypeTitle(pokemon.types[1].type.name) />
-                          </span>
-                        </li>
-                    </ul>
-                    
-                    <ul>
-                        <li class="stats-pokemon">
-                            <ul>
-                                <li><span>Punts de salut</span></li>
-                                <li><span class="stat-hp">{{ pokemon.stats[0].base_stat }}</span></li>
-                            </ul>
-                            <ul>
-                                <li><span>Atac</span></li>
-                                <li><span class="stat-attack">{{ pokemon.stats[1].base_stat }}</span></li>
-                            </ul>
-                            <ul>
-                                <li><span>Defensa</span></li>
-                                <li><span class="stat-defense">{{ pokemon.stats[2].base_stat }}</span></li>
-                            </ul>
-                        </li>
-                        <li class="stats-pokemon">
-                            <ul>
-                                <li><span>Atac especial</span></li>
-                                <li><span class="stat-attack-special">{{ pokemon.stats[3].base_stat }}</span></li>
-                            </ul>
-                            <ul>
-                                <li><span>Defensa especial</span></li>
-                                <li><span class="stat-defense-special">{{ pokemon.stats[4].base_stat }}</span></li>
-                            </ul>
-                            <ul>
-                                <li><span>Velocitat</span></li>
-                                <li><span class="stat-speed">{{ pokemon.stats[5].base_stat }}</span></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </article>
-    <!-- /DETAIL CARD -->
-  </div>
   
   <div v-else class="error-list">
       <!-- EMPTY LIST -->
@@ -178,46 +74,36 @@ defineProps({
 
 <script>
   export default {
-  name: "app",
+  name: "cards-pokemon",
   el: ".card",
-  props: ['list', 'pokemon_id'],
-  emits: ['report-error'],
+  props: ['pokemons','error_message'],
+  methods: {
+    getPokemonTypeIcon(name_type) {
+      let img_type = selectPokemonType(name_type);
+      return img_type['src'];
+    },
+    getPokemonTypeTitle(name_type) {
+      let img_type = selectPokemonType(name_type);
+      return img_type['title'];
+    },
+  }
+  /* emits: ['report-error'],
   data() {
     return {
       pokemons: [],
       first_pokemons: [],
-      searcher: true,
+      front_img: true,
+      back_img: false,
       error: false,
       error_message: ""
     }
   },
-  /*
-  created() {
-    getPokemons.getPokemons(0,10)
-    .then( response =>  {
-      let all_pokemons = response.data;
-      console.log(response.data);
-
-      for (let poke in all_pokemons.results) {
-        getPokemons.getPokemon(poke)
-        .then( res => {
-          console.log(res.data);
-          this.pokemons.push(res.data);
-        })
-      }
-    })
-
-    .catch ( error => {
-      console.log(error);
-    })
-  }*/
   methods: {
     selectPokemon() {
       // Método para seleccionar pokemons
       let starter_pokemon = getFirstPokemon();
-      //console.log(starter_pokemon);
 
-      if (starter_pokemon == '' || starter_pokemon === null) {
+      if (starter_pokemon === '' || starter_pokemon === null) {
         starter_pokemon = [];
 
         let id = 0;
@@ -251,13 +137,7 @@ defineProps({
     getPokemonList(pokemons_selected) {
       // Método para obtener pokemons
       pokemons_selected.forEach(id_pokemon => {
-        /* getPokemons.getPokemon(id_pokemon)
-        .then( res => {
-          //console.log(res.data);
-          this.pokemons.push(res.data);
-        });
-        */
-       this.getPokemonIndividual(id_pokemon);
+        this.getPokemonIndividual(id_pokemon);
       });
     },
     getPokemonIndividual(id_pokemon) {
@@ -267,41 +147,23 @@ defineProps({
         this.pokemons.push(res.data);
       });
     },
-    // Obté més dades d'un Pokémon
-    async getPokemonDetail(id) {
-      let error_promise = false;
-      let results = await Promise.all( [ getPokemons.getPokemon(id), getPokemons.getInfoSpeciesPokemon(id) ] )
-      .then((values) => {
-        //console.log(values);
-        this.pokemons.push(values[0].data);
-        //this.pokemons[0].species = values[1].data;
+    changeImgCard(e, path) {
+      this.front_img = !this.front_img;
+      this.back_img = !this.back_img;
 
-        this.pokemons[0].text_description = this.setPokemonDescription(values[1].data.flavor_text_entries);
-      })
-      .catch(function(err) {
-        //console.log(err.message); // some coding error in handling happened
-        error_promise = true;
-      });
+      console.log(e);
+      console.log(path);
 
-      if (error_promise) {
-        this.error = true;
-        
-        // Envia un emit al pare per indica que hi hagut un error
-        this.$emit('report-error');
+      e.target.src = path;
 
-        this.setErrorMessage(); 
-        //addFooterBottom(true);
-      } else {
-        //addFooterBottom(false);
-      }
+      console.log("front: "+this.front_img);
+      console.log("back: "+this.back_img);
     },
     getPokemonTypeIcon(name_type) {
-      //let img_type = stringToHtml( selectPokemonType(type) );
       let img_type = selectPokemonType(name_type);
       return img_type['src'];
     },
     getPokemonTypeTitle(name_type) {
-      //let img_type = stringToHtml( selectPokemonType(type) );
       let img_type = selectPokemonType(name_type);
       return img_type['title'];
     },
@@ -349,8 +211,9 @@ defineProps({
       //this.getPokemonIndividual(this.pokemon_id);
     }
   }
+  */
 }
-//}
+
 </script>
 
 <style scoped>
