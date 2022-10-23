@@ -35,15 +35,27 @@ body {
 }
 
 /* -- Light Body --  */
+/*
 body.light {
     background: url(/assets/css/img/background\ prueba\ 4.jpg);
     background-attachment: fixed;
-
 }
+*/
+
+body.light {
+    background-color: #eee;
+}
+
 /* -- Dark Body --  */
+/*
 body.dark {
     background: url(/assets/css/img/background\ prueba\ 2.png);
     background-attachment: fixed;
+}
+*/
+
+body.dark {
+    background-color: #1f1f1f;
 }
 
 .container {    

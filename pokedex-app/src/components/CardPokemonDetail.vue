@@ -28,14 +28,20 @@ defineProps({
                             <div class="content-img-card">
                                 <!-- Front img -->
                                 <div class="front">
-                                    <img :src="pokemon.sprites.front_default" class="img-card-pokemon" />
+                                    <img v-if="pokemon.sprites.front_default !== undefined && pokemon.sprites.front_default !== null && pokemon.sprites.front_default !== ''"
+                                    :src="pokemon.sprites.front_default" class="img-card-pokemon" />
+                                    <img v-else
+                                    src="../assets/img/default-pokemon.png" class="img-card-pokemon" />
                                 </div>
                             </div>
                             
                             <div class="content-img-card">
                                 <!-- Back img -->
                                 <div class="back">
-                                    <img :src="pokemon.sprites.back_default" class="img-card-pokemon" />
+                                    <img v-if="pokemon.sprites.back_default !== undefined && pokemon.sprites.back_default !== null && pokemon.sprites.back_default !== ''"
+                                    :src="pokemon.sprites.back_default" class="img-card-pokemon" />
+                                    <img v-else
+                                    src="../assets/img/default-pokemon.png" class="img-card-pokemon" />
                                 </div>
                             </div>
                         </div>
@@ -45,14 +51,20 @@ defineProps({
                             <div class="content-img-card">
                                 <!-- Front img -->
                                 <div class="front">
-                                    <img :src="pokemon.sprites.front_shiny" class="img-card-pokemon" />
+                                    <img v-if="pokemon.sprites.front_shiny !== undefined && pokemon.sprites.front_shiny !== null && pokemon.sprites.front_shiny !== ''"
+                                    :src="pokemon.sprites.front_shiny" class="img-card-pokemon" />
+                                    <img v-else
+                                    src="../assets/img/default-pokemon.png" class="img-card-pokemon" />
                                 </div>
                             </div>
                             
                             <div class="content-img-card">
                                 <!-- Back img -->
                                 <div class="back">
-                                    <img :src="pokemon.sprites.back_shiny" class="img-card-pokemon" />
+                                    <img v-if="pokemon.sprites.back_shiny !== undefined && pokemon.sprites.back_shiny !== null && pokemon.sprites.back_shiny !== ''"
+                                    :src="pokemon.sprites.back_shiny" class="img-card-pokemon" />
+                                    <img v-else
+                                    src="../assets/img/default-pokemon.png" class="img-card-pokemon" />
                                 </div>
                             </div>    
                         </div>
@@ -124,14 +136,6 @@ export default {
   name: 'pokemon-detail',
   el: '.card',
   props: ['pokemon_id','error_message'],
-  /*
-  data() {
-    return {
-      pokemon_detail: [],
-      start: false,
-      error: false
-    }
-  },*/
   methods: {
     getPokemonTypeIcon(name_type) {
       let img_type = selectPokemonType(name_type);
@@ -141,19 +145,7 @@ export default {
       let img_type = selectPokemonType(name_type);
       return img_type['title'];
     }
-  },
-  /*
-  mounted() {
-    if ( this.pokemon_id !== '' ) {
-      const result = this.getPokemonDetail(this.pokemon_id);
-      
-      if ( result ) {
-        this.start = true;
-      console.log(this.pokemon_detail);
-      }
-    }
   }
-  */
 }
 </script>
 

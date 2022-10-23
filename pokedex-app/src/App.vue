@@ -1,29 +1,55 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue'
 import MenuPokemon from './components/MenuPokemon.vue';
+
+let theme = ref('light');
+
+const changeTheme = (e) => {
+  //console.log(e.target.value);
+  
+  // Canvi de tema
+  theme.value = e.target.value;
+  document.body.className = e.target.value;
+
+  //console.log(theme);
+};
 </script>
 
 <template>
-  <header class="header justify-content-center">
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
+  <main class="themed" :class="theme">
+    <header class="header justify-content-center">
+      <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
 
-    <div class="header-content">
-      <MenuPokemon msg="Pokédex" />
-    </div>
-  </header>
+      <div class="header-content">
+        <MenuPokemon msg="Pokédex" :theme="theme" @change-theme="changeTheme" />
+      </div>
+    </header>
 
-  <RouterView />
+    <RouterView />
 
-  <footer class="main-footer">
-      <section class="container">
-          <div class="text-center">
-              <span class="copyright">Copyright 2022 - Albert Juan i David Mañas</span>
-          </div>
-      </section>
-  </footer>
+    <footer class="main-footer">
+        <section class="container">
+            <div class="text-center">
+                <span class="copyright">Copyright 2022 - Albert Juan i David Mañas</span>
+            </div>
+        </section>
+    </footer>
+  </main>
 </template>
 
 <style scoped>
+.themed.light {
+    background: url('@/assets/img/background_prueba_4.jpg');
+    background-attachment: fixed;
+
+}
+
+.themed.dark {
+    background: url('@/assets/img/background_prueba_2.png');
+    background-attachment: fixed;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;

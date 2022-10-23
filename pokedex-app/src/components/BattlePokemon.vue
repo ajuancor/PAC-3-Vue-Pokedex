@@ -6,20 +6,26 @@ import getPokemons from '@/services/getPokemons';
 
   <div v-if="pokemons.length !== 0" class="list-card-pokemon selected-cards">
     <!-- LIST CARD -->
-    <article class="card ocult-card" v-for="(pokemon) in pokemons" v-bind:key="pokemon.id" v-on:click.once="e => !finish_battle && ( selectCard(pokemon), showCard(e) )" :disabled="finish_battle">
+    <article class="card ocult-card" v-for="(pokemon) in pokemons" :key="pokemon.id" v-on:click.once="e => !finish_battle && ( selectCard(pokemon), showCard(e) )" :disabled="finish_battle">
       <div class="content-card">
         <h2 class="title card-title text-center">{{ pokemon.name }}</h2>
         <!-- Img -->
         <div class="content-img-card">
             <!-- Front img -->
-            <div class="front pointer" onclick="changeCardImg(this); return false;">
-                <img :src="pokemon.sprites.front_default" class="img-card-pokemon" />
-            </div>
-            
-            <!-- Back img -->
-            <div class="back pointer" onclick="changeCardImg(this); return false;" style="display: none;">
-                <img :src="pokemon.sprites.back_default" class="img-card-pokemon" />
-            </div>
+          <div v-if="pokemon.front_img" class="front pointer" @click="pokemon.front_img = false">
+              <img v-if="pokemon.sprites.front_default !== undefined && pokemon.sprites.front_default !== null && pokemon.sprites.front_default !== ''"
+              :src="pokemon.sprites.front_default" class="img-card-pokemon" />
+              <img v-else
+              src="../assets/img/default-pokemon.png" class="img-card-pokemon" />
+          </div>
+
+          <!-- Back img -->
+          <div v-else class="back pointer" @click="pokemon.front_img = true">
+              <img v-if="pokemon.sprites.back_default !== undefined && pokemon.sprites.back_default !== null && pokemon.sprites.back_default !== ''"
+              :src="pokemon.sprites.back_default" class="img-card-pokemon" />
+              <img v-else
+              src="../assets/img/default-pokemon.png" class="img-card-pokemon" />
+          </div>
         </div>
         
         <!-- Content text -->
@@ -42,17 +48,17 @@ import getPokemons from '@/services/getPokemons';
     
   </div>
   
-  <div v-if="result_battle != ''" id="battle-detail" class="content-detail-battle text-center">
+  <div v-if="result_battle != '' && finish_battle" id="battle-detail" class="content-detail-battle text-center">
    <!-- BOX RESULT -->
    <div class="detail-battle">
       <h1>{{ result_battle }}</h1>
     </div>
 
-    <button class="btn btn-retrostyle btn-repeat-battle mt30" onclick="location.reload();">Tornar a fer un combat <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></button>  
+    <button class="btn btn-retrostyle btn-repeat-battle mt30" @click="this.$router.go(0)">Tornar a fer un combat <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></button>  
     <!-- /BOX RESULT -->
   </div>
   
-  <div v-else class="error-list">
+  <div v-if="result_battle == '' && finish_battle" class="error-list">
       <!-- EMPTY LIST -->
       <p class="error-message">{{ error_message }}</p>
       <!-- /EMPTY LIST -->
@@ -106,6 +112,7 @@ import getPokemons from '@/services/getPokemons';
       getPokemons.getPokemon(id_pokemon)
       .then( res => {
         //console.log(res.data);
+        res.data['front_img'] = true;
         this.pokemons.push(res.data);
       });
     },

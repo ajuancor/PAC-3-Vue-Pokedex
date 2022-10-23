@@ -1,7 +1,4 @@
 <script setup>
-import getPokemons from '@/services/getPokemons';
-import { ref, onMounted } from '@vue/runtime-core';
-
 defineProps({
   pokemons: {
     type: Array,

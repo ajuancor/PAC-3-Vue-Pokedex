@@ -1,4 +1,5 @@
 /* THEME (DARK & LIGHT) */
+/*
 const body = document.querySelector('#app');
 
 let theme = window.localStorage.getItem('theme');
@@ -40,6 +41,7 @@ function selectTheme(color) {
             break;
     }
 }
+*/
 
 /* POKEMON */
 // Manipula dades del localStorage
@@ -60,12 +62,6 @@ async function deleteFirstPokemon() {
 // Genera número aleatori
 function getRandomId(max) {
     return Math.floor(Math.random() * max);
-}
-
-// Canvia l'URL
-function changeURL(id) {
-    //history.pushState("", document.title, '?pokeID=' + id);
-    location.search = '?pokeID=' + id;
 }
 
 /* LOADER */
@@ -199,6 +195,7 @@ function selectPokemonType(type) {
 }
 
 // Canvia la imatge del pokemon
+/*
 function changeCardImg(card) {
     if ( card.classList.contains('front') ) {
         card.style.display = 'none';
@@ -208,9 +205,11 @@ function changeCardImg(card) {
         card.previousElementSibling.style.display = 'block';
     }
 }
+*/
 
 /* Footer */
 // Serveix per si ha de forçar el footer al final de la pàgina o no
+/*
 function addFooterBottom(bottom_position) {
     const footer = document.querySelector('.main-footer');
 
@@ -224,3 +223,4 @@ function addFooterBottom(bottom_position) {
         }
     }
 }
+*/

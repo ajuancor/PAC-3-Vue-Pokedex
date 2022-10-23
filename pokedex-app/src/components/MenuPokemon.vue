@@ -3,6 +3,10 @@ defineProps({
   msg: {
     type: String,
     required: true
+  },
+  theme: {
+    type: String,
+    required: true
   }
 })
 </script>
@@ -22,12 +26,12 @@ defineProps({
     <div class="controls align-self-center">
         <div class="content-control">
             <label for="dark_theme">Dark</label>
-            <input type="radio" name="theme" id="dark_theme" value="dark" />
+            <input type="radio" name="theme" id="dark_theme" value="dark" v-model="theme" @change="$emit('change-theme', $event,'dark')" />
         </div>
 
         <div class="content-control">
             <label for="light_theme">Light</label>
-            <input type="radio" name="theme" id="light_theme" value="light" />
+            <input type="radio" name="theme" id="light_theme" value="light" v-model="theme" @change="$emit('change-theme', $event,'light')" />
         </div>
       </div>
   </div>
