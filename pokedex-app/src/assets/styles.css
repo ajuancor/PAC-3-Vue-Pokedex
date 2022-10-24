@@ -3,12 +3,14 @@
 
 :root {
     --light-background: #f2f2f2;
-    --light-color: #0013a5;
+    --light-color: #f8f8f8;
+    --light-shadow: #0013a5;
     --light-menu-background: #f4ed8b;
     --light-footer-background: #c8c9c8;
 
     --dark-background: #1f1f1f;
-    --dark-color: #f4ed8b;
+    --dark-color: #000000;
+    --dark-shadow: #f8f8f8;
     --dark-menu-background: #000b5c;
     --dark-footer-background: #000b5c;
 }
@@ -260,17 +262,19 @@ img {
 /* Main Title */
 .main-title {
     text-align: center;
-    font-size: 4em;
+    
 }
 
 .light .main-title {
-    color: var(--light-background);
-    text-shadow: 2px 2px 2px var(--light-color);
+   color: var(--light-color);
+    text-shadow: 2px 2px 2px var(--light-shadow);
+    /*color:#1f1f1f;
+    text-shadow: 2px 2px 2px*/
 }
 
 .dark .main-title {
-    color: var(--light);
-    text-shadow: 2px 2px 2px #f3f3f3;
+    color: var(--dark-color);
+    text-shadow: 2px 2px 2px var(--dark-shadow);
 }
 
 /* Heade & Main Menu */
@@ -278,7 +282,9 @@ header {
     background-image: url(img/arboles.jpg);
     background-repeat: repeat;
     background-attachment: fixed;
-    padding-right: 0 !important;
+    padding: 0 !important;
+    
+    
 }
 
 .header-content {
@@ -298,7 +304,18 @@ header {
 */
 
 .main-menu {
-    background: #fff5ac; /* #fff5ac */
+    background: #000000; /* #fff5ac */
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.main-header{
+    display:flex;
+    flex-direction: column;
+    
 }
 
 .navbar-menu {
@@ -527,17 +544,17 @@ header {
 }
 
 .light .controls label {
-    color: var(--dark-background);
-    text-shadow: 2px 2px 2px var(--dark-color);
+    color: var(--light-color);
+    text-shadow: 2px 2px 2px var(--light-shadow);
 }
 
 .dark .controls .content-control {
-    background: rgb(0 0 0 / 50%);
+    background: rgba(147, 147, 147, 0.5);
 }
 
 .dark .controls label {
-    color: var(--light-background);
-    text-shadow: 2px 2px 2px var(--light-color);
+    color: var(--dark-color);
+    text-shadow: 2px 2px 2px var(--dark-shadow);
 }
 
 @media (max-width: 576px) {
@@ -891,3 +908,4 @@ header {
     position: absolute;
     bottom: 0;
 } */
+

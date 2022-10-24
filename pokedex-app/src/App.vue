@@ -22,7 +22,7 @@ const changeTheme = (e) => {
       <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
 
       <div class="header-content">
-        <MenuPokemon msg="Pokédex" :theme="theme" @change-theme="changeTheme" />
+        <MenuPokemon msg="POKÉDEX" :theme="theme" @change-theme="changeTheme" />
       </div>
     </header>
 
