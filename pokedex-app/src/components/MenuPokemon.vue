@@ -12,36 +12,53 @@ defineProps({
 </script>
 
 <template>
-  <div class="text-center">
-    <div>
-      <h1 class="green">{{ msg }}</h1>
+  <div class="header">
+    <div class="container ">
+      <div class="row">
+        <div class="d-flex align-self-center justify-content-center">
 
-      <nav>
-        <!-- <RouterLink to="/">Home</RouterLink> -->
-        <RouterLink to="/llista">Llista</RouterLink>
-        <RouterLink to="/combat">Combat</RouterLink>
-      </nav>
-    </div>
-    
-    <div class="controls align-self-center">
-        <div class="content-control">
-            <label for="dark_theme">Dark</label>
-            <input type="radio" name="theme" id="dark_theme" value="dark" v-model="theme" @change="$emit('change-theme', $event,'dark')" />
-        </div>
+          <h1 class="main-title">{{ msg }}</h1>
 
-        <div class="content-control">
-            <label for="light_theme">Light</label>
-            <input type="radio" name="theme" id="light_theme" value="light" v-model="theme" @change="$emit('change-theme', $event,'light')" />
+          <div class="controls align-self-center">
+            <div class="content-control">
+              <label for="dark_theme">Dark</label>
+              <input type="radio" name="theme" id="dark_theme" value="dark" v-model="theme" @change="$emit('change-theme', $event,'dark')" />
+            </div>
+
+            <div class="content-control">
+              <label for="light_theme">Light</label>
+              <input type="radio" name="theme" id="light_theme" value="light" v-model="theme" @change="$emit('change-theme', $event,'light')" />
+            </div>
+
+          </div>
         </div>
       </div>
+    </div>
+    
+    <div class="main-menu">
+      <div class="container">
+        <nav class="navbar-menu">
+          <ul>
+            <li>
+              <!-- <RouterLink to="/">Home</RouterLink> -->
+              <RouterLink class="" to="/llista">Llista</RouterLink>
+              
+              
+              <RouterLink class="" to="/combat">Combat</RouterLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 h1 {
   font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
+  font-size: 4em;
+  top: 0;
+  
 }
 
 h3 {
