@@ -499,7 +499,7 @@ header {
 /* Battle - Cards list */
 .list-card-pokemon.selected-cards .ocult-card {
     cursor: pointer;
-} 
+}
 
 /* - Theme - */
 .controls {
@@ -560,6 +560,10 @@ header {
     margin: 1.8rem;
 }
 
+.btn-restart-starter:hover {
+    background-color: hsla(160, 100%, 37%, 0.8);
+}
+
 .searcher {
     display: flex;
     gap: 10px;
@@ -608,11 +612,25 @@ header {
     justify-content: space-between;
     align-items: center;
     color: rgb(4, 4, 175);
-    gap: 5px
+    gap: 5px;
+}
+
+.btn-retrostyle.btn-more-info {
+    padding: 0;
 }
 
 .iconbtn {
     width: 1rem;
+    height: 1rem;
+    margin: auto 0;
+}
+
+.btn-retro-detail {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    padding: 0.375rem 0.75rem;
+    gap: 5px;
 }
 
 /*  .button_search {
@@ -646,10 +664,6 @@ header {
     background: #000;
     color: #fff;
 } */
-
-.iconbtn{
-    width: 1rem;
-}
 
 /* - Carta - */
 .card {
@@ -802,7 +816,11 @@ header {
 
 .card.ocult-card .content-card {
     visibility: hidden;
-   
+}
+
+.card .content-battle-card {
+    width: 13em;
+    margin: 0 auto;
 }
 
 /* - Imatges - */

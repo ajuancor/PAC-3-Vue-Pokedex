@@ -10,7 +10,7 @@ import getPokemons from '@/services/getPokemons';
       <div class="content-card">
         <h2 class="title card-title text-center">{{ pokemon.name }}</h2>
         <!-- Img -->
-        <div class="content-img-card">
+        <div class="content-img-card content-battle-card">
             <!-- Front img -->
           <div v-if="pokemon.front_img" class="front pointer" @click="pokemon.front_img = false">
               <img v-if="pokemon.sprites.front_default !== undefined && pokemon.sprites.front_default !== null && pokemon.sprites.front_default !== ''"

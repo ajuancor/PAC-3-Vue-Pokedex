@@ -54,7 +54,7 @@ defineProps({
       <!-- v-on:button="detailCard" More info onclick="changeURL(document.querySelector('.card').dataset.pokeid); return false;"-->
       <div class="content-more-info text-center">
           <button class="btn btn-retrostyle btn-more-info">
-            <router-link :to="{ name: 'card_detail', params: { id: pokemon.id }}">Més informació <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></router-link>
+            <router-link class="btn-retro-detail" :to="{ name: 'card_detail', params: { id: pokemon.id }}">Més informació <img class="iconbtn" src="@/assets/img/iconbtn.png"></router-link>
           </button>
       </div>
     </article>
@@ -84,131 +84,6 @@ defineProps({
       return img_type['title'];
     },
   }
-  /* emits: ['report-error'],
-  data() {
-    return {
-      pokemons: [],
-      first_pokemons: [],
-      front_img: true,
-      back_img: false,
-      error: false,
-      error_message: ""
-    }
-  },
-  methods: {
-    selectPokemon() {
-      // Método para seleccionar pokemons
-      let starter_pokemon = getFirstPokemon();
-
-      if (starter_pokemon === '' || starter_pokemon === null) {
-        starter_pokemon = [];
-
-        let id = 0;
-        while (starter_pokemon.length < 10) {
-          // Obté un id aleatori
-          id = getRandomId(905);
-
-          // Si id no esta al array l'afegeix
-          if ( !starter_pokemon.includes(id) && id != 0 && id !== null ) {
-              starter_pokemon.push(id);
-          }
-        }
-      
-        saveFirstPokemon(starter_pokemon);
-      }
-
-      return starter_pokemon;
-    },
-    restartPokemon() {
-      // Elimina els primers pokemons sel·leccionats
-      deleteFirstPokemon();
-      this.pokemons = [];
-
-      // Sel·lecciona nous pokemons
-      const first_pkm_restart = this.selectPokemon();
-      
-      // Obté els nous pokemons
-      this.getPokemonList(first_pkm_restart);
-      this.first_pokemons = this.pokemons;
-    },
-    getPokemonList(pokemons_selected) {
-      // Método para obtener pokemons
-      pokemons_selected.forEach(id_pokemon => {
-        this.getPokemonIndividual(id_pokemon);
-      });
-    },
-    getPokemonIndividual(id_pokemon) {
-      getPokemons.getPokemon(id_pokemon)
-      .then( res => {
-        //console.log(res.data);
-        this.pokemons.push(res.data);
-      });
-    },
-    changeImgCard(e, path) {
-      this.front_img = !this.front_img;
-      this.back_img = !this.back_img;
-
-      console.log(e);
-      console.log(path);
-
-      e.target.src = path;
-
-      console.log("front: "+this.front_img);
-      console.log("back: "+this.back_img);
-    },
-    getPokemonTypeIcon(name_type) {
-      let img_type = selectPokemonType(name_type);
-      return img_type['src'];
-    },
-    getPokemonTypeTitle(name_type) {
-      let img_type = selectPokemonType(name_type);
-      return img_type['title'];
-    },
-    setPokemonDescription(flavor_texts) {
-      let text_description = "";
-      text_description = pokemonDescription(flavor_texts);
-      
-      //console.log(text_description);
-      return text_description;
-    },
-    searchPokemon(e) {
-      var key = event.target.value;
-      //console.log(key);
-      
-      var result = [];
-      if (key != "") {
-        for (let pkm of this.first_pokemons) {
-          if (pkm.name.indexOf(key) === 0) {
-            result.push(pkm);
-          }
-        }
-
-        this.pokemons = result;
-
-        if (result.length == 0) {
-          this.setErrorMessage();
-        }
-
-      } else {
-        this.pokemons = this.first_pokemons;
-      }
-    },
-    setErrorMessage() {
-      //console.log("Show missatge error");
-      this.error_message = "No s'han trobat resultats";
-    }
-  },
-  mounted() {
-    if ( this.list ) {
-      let pokemons_selected = this.selectPokemon();
-      this.getPokemonList(pokemons_selected);
-      this.first_pokemons = this.pokemons;
-    } else {
-      this.getPokemonDetail(this.pokemon_id);
-      //this.getPokemonIndividual(this.pokemon_id);
-    }
-  }
-  */
 }
 
 </script>

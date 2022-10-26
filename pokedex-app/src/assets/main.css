@@ -9,9 +9,13 @@
   min-height: 100vh;
 }
 
-#app main {
+#app main:not(.themed) {
   max-width: 1280px;
   margin: 0 auto;
+}
+
+#app .themed { 
+  min-height: 100vh;
 }
 
 a,
@@ -32,12 +36,14 @@ a,
     display: flex;
     /* place-items: center; */
   }
-
-  #app {
+ 
   /* 
+  #app {
+ 
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
-  */
+  
   }
+  */
 }

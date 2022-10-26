@@ -3,7 +3,7 @@ import BattlePokemon from '../components/BattlePokemon.vue';
 </script>
 
 <template>
-  <main>
+  <main class="main-battle">
     <BattlePokemon />
   </main>
 </template>
