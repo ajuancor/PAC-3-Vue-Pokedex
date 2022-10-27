@@ -3,13 +3,13 @@
 
 :root {
     --light-background: #f2f2f2;
-    --light-color: #f8f8f8;
+    --light-color: #eeeeee;
     --light-shadow: #0013a5;
     --light-menu-background: #f4ed8b;
     --light-footer-background: #c8c9c8;
 
     --dark-background: #1f1f1f;
-    --dark-color: #000000;
+    --dark-color: #2b2c2b;
     --dark-shadow: #f8f8f8;
     --dark-menu-background: #000b5c;
     --dark-footer-background: #000b5c;
@@ -278,7 +278,7 @@ img {
 }
 
 /* Heade & Main Menu */
-header {
+.header {
     background-image: url(img/arboles.jpg);
     background-repeat: repeat;
     background-attachment: fixed;
@@ -286,6 +286,8 @@ header {
     
     
 }
+
+
 
 .header-content {
     width: 100%;
@@ -295,20 +297,14 @@ header {
     justify-content: center;
 }
 
-/*
-.content-header {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-}
-*/
+
 
 .main-menu {
     background: #000000; /* #fff5ac */
     font-size: 14px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: ;
+    align-items: space;
     
     
 }
@@ -320,7 +316,9 @@ header {
 
 .navbar-menu {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    gap: 5px;
 }
 
 .navbar-menu ul {
@@ -332,16 +330,17 @@ header {
 .navbar-menu ul li {
     display: inline-block;
     margin: 0rem 1rem;
-    padding: 0; /* 1rem */
+    padding: 2.1rem; /* 1rem */
     text-transform: uppercase;
     cursor: pointer;
+
 }
 
-.navbar-menu ul li.active {
-    background: #f3f3f3;
+.navbar-menu ul li .active {
+    background: #ffffff;
 }
 
-.navbar-menu ul li .btn {
+.navbar-menu ul li .button {
     padding: 1.5rem;
 }
 
@@ -355,7 +354,7 @@ header {
     background: #fff;
 }
 
-.light .navbar-menu ul li:hover > .btn {
+.light .navbar-menu ul li:hover > .button {
     color: #000;
 }
 
@@ -367,12 +366,12 @@ header {
     background-color: #fff;
 }
 
-.light .navbar-menu ul li.active:hover > .btn {
+.light .navbar-menu ul li.active:hover > .button {
     color: #000;
 }
 
-.light .navbar-menu .btn {
-    color: var(--light-color);
+.light .navbar-menu .button {
+    color: var(--light-shadow);
 }
 
 .light .navbar-menu .btn.active {
@@ -388,7 +387,7 @@ header {
     background: #000;
 }
 
-.dark .navbar-menu ul li:hover > .btn {
+.dark .navbar-menu ul li:hover > .button {
     color: #fff;
 }
 
@@ -404,8 +403,8 @@ header {
     color: #fff;
 }
 
-.dark .navbar-menu .btn {
-    color: var(--dark-color);
+.dark .navbar-menu .button {
+    color: var(--dark-color-font);
 }
 
 .dark .navbar-menu .btn.active {
@@ -927,3 +926,7 @@ header {
     bottom: 0;
 } */
 
+.header-content{
+
+}
+    
