@@ -9,6 +9,7 @@ defineProps({
     required: true
   }
 })
+
 </script>
 
 <template>
@@ -43,7 +44,6 @@ defineProps({
             <!-- <RouterLink to="/">Home</RouterLink> -->
             <RouterLink class="button" to="/llista">Llista</RouterLink>
             
-            
             <RouterLink class="button" to="/combat">Combat</RouterLink>
           </li>
         </ul>
@@ -52,6 +52,14 @@ defineProps({
   </div>
   
 </template>
+
+<script>
+export default {
+  name: "MenuPokemon",
+  inheritAttrs: false
+}
+</script>
+
 
 <style scoped>
 h1 {

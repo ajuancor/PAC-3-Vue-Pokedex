@@ -48,13 +48,13 @@ import getPokemons from '@/services/getPokemons';
     
   </div>
   
-  <div v-if="result_battle != '' && finish_battle" id="battle-detail" class="content-detail-battle text-center">
+  <div v-if="result_battle != '' && finish_battle" id="battle-detail" ref="result_finish" class="content-detail-battle text-center">
    <!-- BOX RESULT -->
    <div class="detail-battle">
       <h1>{{ result_battle }}</h1>
     </div>
 
-    <button class="btn btn-retrostyle btn-repeat-battle mt30" @click="this.$router.go(0)">Tornar a fer un combat <img class="iconbtn" src="@/assets/img/iconbtn.jpg"></button>  
+    <button class="btn btn-retrostyle btn-repeat-battle mt30" @click="this.$router.go(0)">Tornar a fer un combat <img class="iconbtn" src="@/assets/img/iconbtn.png"></button>  
     <!-- /BOX RESULT -->
   </div>
   
@@ -170,6 +170,9 @@ import getPokemons from '@/services/getPokemons';
       }
 
       this.finish_battle = true;
+
+      // Go to detail battle
+      this.$nextTick( () => { this.$refs.result_finish.scrollIntoView({ behavior: 'smooth' }); } );
     }
   },
   mounted() {
@@ -183,7 +186,6 @@ import getPokemons from '@/services/getPokemons';
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
-  top: -10px;
 }
 
 h3 {

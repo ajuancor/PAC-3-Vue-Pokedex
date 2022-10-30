@@ -11,6 +11,7 @@
 
     --dark-background: #1f1f1f;
     --dark-color: #2b2c2b;
+    --dark-color-menu: #ccc;
     --dark-shadow: #f8f8f8;
     --dark-menu-background: #000b5c;
     --dark-footer-background: #000b5c;
@@ -303,7 +304,7 @@ img {
     background: #000000; /* #fff5ac */
     font-size: 14px;
     display: flex;
-    justify-content: ;
+    /* justify-content: ; */
     align-items: space;
     
     
@@ -336,11 +337,13 @@ img {
 
 }
 
-.navbar-menu ul li .active {
-    background: #ffffff;
+.navbar-menu ul li .router-link-active {
+    font-weight: 800;
+    cursor: initial;
 }
 
 .navbar-menu ul li .button {
+    font-size: 1.2rem;
     padding: 1.5rem;
 }
 
@@ -404,7 +407,7 @@ img {
 }
 
 .dark .navbar-menu .button {
-    color: var(--dark-color-font);
+    color: var(--dark-color-menu);
 }
 
 .dark .navbar-menu .btn.active {
@@ -682,6 +685,11 @@ img {
     color: #fff;
 } */
 
+.btn-repeat-battle:hover {
+    background-color: hsla(160, 100%, 37%, 0.8);
+}
+
+
 /* - Carta - */
 .card {
     display: flex;
@@ -877,6 +885,11 @@ img {
         margin-left: 1.5em;
         margin-right: 1.5em;
     }
+
+    .list-card-pokemon.selected-cards .content-card .content-img-card {
+        margin: 0 auto;
+    }
+
 }
 
 @media (max-width: 470px) {
@@ -886,6 +899,10 @@ img {
         width: 50vw;
         align-items: center;
         margin: 0 auto;
+    }
+
+    .list-card-pokemon.selected-cards .content-card .content-img-card {
+        width: 13em;
     }
 }
 
@@ -902,7 +919,9 @@ img {
     background: #f3f3f3;
 }
 
-
+.content-detail-battle {
+    padding: 2em;
+}
 
 .detail-battle h1 {
     font-size: 2.5em;
@@ -938,21 +957,28 @@ img {
 }
 
 .error-list .error-message {
+    text-align: center;
     font-size: 2.3rem;
 }
 
+.light .error-list .error-message {
+    color: var(--light-shadow);
+}
+
+.dark .error-list .error-message {
+    color: var(--dark-shadow);
+}
+
 /* Error detail */
+/*
 .error-detail + .main-footer {
     position: absolute;
     bottom: 0;
 }
+*/
 
-/* main:has(.error-list .error-message) + footer {
+/*
+main:has(.error-list .error-message) + footer {
     position: absolute;
     bottom: 0;
 } */
-
-.header-content{
-
-}
-    

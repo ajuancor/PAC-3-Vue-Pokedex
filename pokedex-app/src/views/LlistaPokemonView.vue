@@ -8,7 +8,7 @@ import CardPokemon from '../components/CardPokemon.vue';
 
     <div class="content-searcher">
       <div class="restart-starters">
-          <button @click="restartPokemon()" id="btn-restart-starters" class="btn btn-retrostyle btn-restart-starter">Reiniciar inicials <img class="iconbtn" src="@/assets/img/iconbtn.png"></button>
+          <button @click="restartPokemon()" id="btn-restart-starters" class="btn btn-retrostyle btn-restart-starter">Reiniciar inicials <img class="iconbtn" src="@/assets/img/iconbtn.png" /></button>
       </div>
 
       <div class="searcher">

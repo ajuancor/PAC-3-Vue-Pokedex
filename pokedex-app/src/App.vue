@@ -3,7 +3,22 @@ import { RouterLink, RouterView } from 'vue-router'
 import { ref } from 'vue'
 import MenuPokemon from './components/MenuPokemon.vue';
 
-let theme = ref('light');
+const getTheme = () => {
+  // Guarda el theme al localStorage
+    let theme_saved = window.localStorage.getItem('theme');
+    if ( ! theme_saved ) { 
+        theme_saved = 'light';
+        window.localStorage.setItem('theme', theme_saved);
+    }
+
+    document.body.className = theme_saved;
+
+    //console.log(theme_saved);
+    return theme_saved;
+}
+
+//let theme = ref('light');
+let theme = ref(getTheme());
 
 const changeTheme = (e) => {
   //console.log(e.target.value);
@@ -11,8 +26,8 @@ const changeTheme = (e) => {
   // Canvi de tema
   theme.value = e.target.value;
   document.body.className = e.target.value;
-
-  //console.log(theme);
+  
+  changeThemed(e.target.value);
 };
 </script>
 

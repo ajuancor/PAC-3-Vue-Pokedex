@@ -1,28 +1,12 @@
 /* THEME (DARK & LIGHT) */
-/*
-const body = document.querySelector('#app');
+const body = document.querySelector('body');
 
-let theme = window.localStorage.getItem('theme');
-if ( ! theme ) { 
-    theme = 'light';
-}
-
-selectTheme(theme);
-
-const radios_theme = document.querySelectorAll('input[name="theme"]');
-
-radios_theme.forEach( x => {
-    x.addEventListener('change', function() {
-        selectTheme(this.value);
-    });
-});
-
-function selectTheme(color) {
-    switch (color) {
+function changeThemed(theme) {
+    switch (theme) {
         case 'dark':
             // Es clica el botó light
-            const btn_dark = document.querySelector('#dark_theme');
-            btn_dark.checked = true;
+            //const btn_dark = document.querySelector('#dark_theme');
+            //btn_dark.checked = true;
 
             body.classList.add('dark');
             body.classList.remove('light');
@@ -32,8 +16,8 @@ function selectTheme(color) {
         case 'light':
         default:
             // Es clica el botó light
-            const btn_light = document.querySelector('#light_theme');
-            btn_light.checked = true;
+            //const btn_light = document.querySelector('#light_theme');
+            //btn_light.checked = true;
 
             body.classList.add('light');
             body.classList.remove('dark');
@@ -41,7 +25,6 @@ function selectTheme(color) {
             break;
     }
 }
-*/
 
 /* POKEMON */
 // Manipula dades del localStorage
@@ -193,34 +176,3 @@ function selectPokemonType(type) {
 
     return icon;
 }
-
-// Canvia la imatge del pokemon
-/*
-function changeCardImg(card) {
-    if ( card.classList.contains('front') ) {
-        card.style.display = 'none';
-        card.nextElementSibling.style.display = 'block';
-   } else {
-        card.style.display = 'none';
-        card.previousElementSibling.style.display = 'block';
-    }
-}
-*/
-
-/* Footer */
-// Serveix per si ha de forçar el footer al final de la pàgina o no
-/*
-function addFooterBottom(bottom_position) {
-    const footer = document.querySelector('.main-footer');
-
-    if ( bottom_position ) {
-        if ( ! footer.classList.contains('bottom-position') ) { 
-            footer.classList.add('bottom-position');
-        }
-    } else {
-        if ( footer.classList.contains('bottom-position') ) { 
-            footer.classList.remove('bottom-position');
-        }
-    }
-}
-*/

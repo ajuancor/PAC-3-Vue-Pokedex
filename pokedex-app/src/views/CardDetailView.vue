@@ -50,16 +50,6 @@ export default {
         //this.$emit('report-error');
       }
     },
-    /*
-    getPokemonTypeIcon(name_type) {
-      let img_type = selectPokemonType(name_type);
-      return img_type['src'];
-    },
-    getPokemonTypeTitle(name_type) {
-      let img_type = selectPokemonType(name_type);
-      return img_type['title'];
-    },
-    */
     setPokemonDescription(flavor_texts) {
       let text_description = "";
       text_description = pokemonDescription(flavor_texts);
@@ -69,26 +59,13 @@ export default {
     },
     setErrorMessage() {
       this.error_message = "No s'han trobat resultats";
-    },
-    /*
-    showError() {
-      this.error_detail = true;
     }
-    */
   },
   mounted() {
     const id_param = this.$route.params.id;
     if ( id_param !== '' ) {
       this.getPokemonDetail(id_param);
       //console.log(this.pokemon);
-
-      /*
-      if ( result ) {
-        this.start = true;
-        console.log(this.pokemon_detail);
-      }
-      */
-
     }
   }
 }
