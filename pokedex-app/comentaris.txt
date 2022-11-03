@@ -1,0 +1,44 @@
+Aspectes a tenir en compte:
+Les pàgines i components que no s'utilitzen es poden eliminar per deixar el codi més net
+Les funcions que no s'utilitzen també s'haurien d'eliminar
+En alguns llocs s'usa options API i en d'altres composition API. Es poden barrejar (està comprovat que el codi funciona), però seria més correcte homogenitzar-ho tot (idealment a composition API, que és la recomanada per Vue 3)
+
+
+Aspectes bons:
+Bon detall el canvi de la imatge de fons segons el tema clar/fosc
+El selector de tema clar/fosc és un component
+Bon ús de v-if/v-else
+
+
+Comentaris/alternatives:
+Es podria desglosar una mica més els components. Algunes lògiques es podrien assignar a la pròpia vista. Els compontents es podrien pensar com elements reaprofitables. 
+Per exemple, un component que sigui la propia card (una sola targeta), i que sigui la vista que gestioni tota la lògica de totes les cards, les pinti amb un v-for i la lògica del filtre.
+El component targeta pot tenir el control del canvi de vista frontal/posterior i els emits que necessiti.
+
+
+Una alternavia per fer el filtre podria ser utilitzar les computed properties (informació/elements que es van recalculant sobre la marxa / en viu, en comptes de carregar-se a l'inicialitzar la pàgina)
+L'exemple és sobre composition API:
+
+<script setup>
+  const photos = ref([])
+  const search = ref("")
+
+
+  onMounted(() => {
+    myAPI.getPhotos().then( (response) => {
+      console.log(response.data)
+      photos.value = response.data; 
+    })
+  })
+
+  const filteredPhotos = computed(() => {
+    return photos.value.filter( (photo) => {
+      // return photo.title.toLowerCase().includes( search.value.toLowerCase() ) 
+      return photo.title.toLowerCase().startsWith( search.value.toLowerCase() )
+    })
+  })
+</script>
+
+<template>
+  <PhotoCard v-for="photo in filteredPhotos" :key="photo.id" :info="photo" />
+</template>
